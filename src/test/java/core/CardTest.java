@@ -5,7 +5,7 @@ import junit.framework.*;
 public class CardTest extends TestCase {
 	
 	
-	Card testCard = new Card ("Diamond ", 1); 
+	Card testCard = new Card (Suit.Diamond, 1); 
 	
 	public void getSuitOfTestCard() {
 		assertEquals(Suit.Diamond, testCard.getCardSuit());
