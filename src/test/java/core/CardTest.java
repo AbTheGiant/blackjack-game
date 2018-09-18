@@ -1,11 +1,15 @@
 package core;
 
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 
-import junit.framework.*;
+//import junit.framework.TestCase;
 
-public class CardTest extends TestCase {
+public class CardTest  {
 	
 	
 	Card testCard = new Card (Suit.Diamond, 1); 
@@ -19,6 +23,7 @@ public class CardTest extends TestCase {
 	
 	
 	
+	@Before
 	public void setup() {
 		//deck = new DeckOfCards();
 		tester_deck= new Card[52];
@@ -92,12 +97,14 @@ public class CardTest extends TestCase {
 	}
 	
 	
-	
+	@Test
 	public void testgetSuit() {
 		assertEquals(Suit.Club, tester_deck[48].getCardSuit());
 		
 	}
 	
+	
+	@Test
 	public void testgetRank() {
 		
 		assertEquals(4, tester_deck[42].getCardRank());
