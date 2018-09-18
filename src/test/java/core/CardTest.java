@@ -12,6 +12,9 @@ import org.junit.Test;
 public class CardTest  {
 	
 	
+	
+	Deck d;
+	
 	Card testCard = new Card (Suit.Diamond, 1); 
 	private Card [] tester_deck ; 
 	
@@ -110,6 +113,12 @@ public class CardTest  {
 		assertEquals(4, tester_deck[42].getCardRank());
 		
 	}
+	
+	@Test 
+	public void testgetSizeOfDeck() {
+		assertEquals(52, d.sizeOfDeck());
+	}
+	
 	
 	
 	

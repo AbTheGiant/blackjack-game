@@ -5,7 +5,7 @@ public class Player {
 	
 	private String playerName; 
 	private Card [] playerHand; 
-	//xprivate int numberOfCards= 0; 
+	private int numberOfCards= 0; 
 	
 	
 	public Player(String name ) {
@@ -27,6 +27,13 @@ public class Player {
 		
 	}
 	
+	public int addCard(Card aCard) {
+		
+		this.playerHand[this.numberOfCards] = aCard;
+		numberOfCards++;
+		return numberOfCards; 
+		
+	}
 	
 	
 }

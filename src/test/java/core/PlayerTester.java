@@ -30,7 +30,8 @@ public class PlayerTester {
 	} 
 	
 	
-	public void testPlayerHnd () {
+	@Test
+	public void testPlayerHand () {
 		
 		Card firstCard = new Card(Suit.Diamond, 1); //Ace
 		 Card secondCard = new Card(Suit.Diamond, 2);
