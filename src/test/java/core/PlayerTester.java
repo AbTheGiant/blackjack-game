@@ -68,7 +68,7 @@ public class PlayerTester {
 		testPlayer.addCard(ninthCard);
 		testPlayer.addCard(tenthCard);
 		
-		 assertArrayEquals(testHand, testPlayer.getPlayerHand());
+		assertArrayEquals(testHand, testPlayer.getPlayerHand());
 		
 		
 		
@@ -80,11 +80,40 @@ public class PlayerTester {
 	
 	
 	
+	@Test
+	public void testSumOfHand() {
+		
+		
+		Card c2 = new Card(Suit.Heart, 5);
+		Card c3 = new Card(Suit.Spade, 5);
+		Card c1 = new Card(Suit.Diamond, 1);
+		
+		 
+		Card [] testHand = new Card [10]; 
+		 
+		testHand [0]= c1;
+		testHand[1]= c2;
+		testHand[2]= c3;
+		
+		testPlayer.addCard(c1);
+		testPlayer.addCard(c2);
+		testPlayer.addCard(c3);
+		
+		assertEquals(21, testPlayer.getTotalOfHand());
+	}
 	
 	
 	
 	
 	
+	
+	
+	
+	@Test
+	public void testHandSize() {
+		assertEquals(10, testPlayer.getPlayerHand().length);
+		
+	}
 	
 	
 	
