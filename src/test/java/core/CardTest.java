@@ -13,7 +13,7 @@ public class CardTest  {
 	
 	
 	
-	Deck d;
+	Deck d ;
 	
 	Card testCard = new Card (Suit.Diamond, 1); 
 	private Card [] tester_deck ; 
@@ -116,7 +116,7 @@ public class CardTest  {
 	
 	@Test 
 	public void testgetSizeOfDeck() {
-		assertEquals(52, d.sizeOfDeck());
+		assertEquals(52, d);
 	}
 	
 	

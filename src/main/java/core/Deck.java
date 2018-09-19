@@ -16,7 +16,7 @@ public class Deck {
 		for (int i =0 ; i < 4; i++) {
 			for (int j =0 ;j < 14; j++) {
 				
-				
+			
 				deck[indexOfCard] = new Card(Suit.values()[i], j);
 				indexOfCard++;
 			}

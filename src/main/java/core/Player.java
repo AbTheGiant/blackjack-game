@@ -4,8 +4,8 @@ public class Player {
 	
 	
 	private String playerName; 
-	private Card [] playerHand= new Card [10];
-	private int numberOfCards= 0; 
+	public Card [] playerHand= new Card [10];
+	public int numberOfCards= 0; 
 	
 	
 	public Player(String name ) {
@@ -20,6 +20,10 @@ public class Player {
 		return playerName; 
 	}
 
+	public int getNumberOfCards() {
+		
+		return numberOfCards;
+	}
 	
 	public Card[] getPlayerHand() { 
 		return playerHand; 
@@ -54,7 +58,7 @@ public class Player {
 			
 			switch (testCard.getCardRank()) {
 
-			case 1: // Ace
+			case 1: 
 				numAces++;
 				break;
 			case 2:
@@ -95,7 +99,7 @@ public class Player {
 			} 
 		} 
 
-		// Handle aces
+		
 		for (int i = 0; i < numAces; i++) {
 			if (total > 10) {
 				total += 1;

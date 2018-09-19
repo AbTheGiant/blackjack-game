@@ -12,10 +12,13 @@ public class PlayerTester {
 	
 	
 	private Player testPlayer;
+	private Card testCard, testCardTwo;
 	
 	@Before
 	public void setup() {
 		testPlayer = new Player("Tester");
+		testCard = new Card(Suit.Heart, 2);
+		testCardTwo= new Card(Suit.Heart,4);
 	}
 	
 	@Test
@@ -98,7 +101,7 @@ public class PlayerTester {
 		testPlayer.addCard(c1);
 		testPlayer.addCard(c2);
 		testPlayer.addCard(c3);
-		
+
 		assertEquals(21, testPlayer.getTotalOfHand());
 	}
 	
@@ -114,6 +117,23 @@ public class PlayerTester {
 		assertEquals(10, testPlayer.getPlayerHand().length);
 		
 	}
+	
+	
+	
+	
+	@Test
+	public void testAddCard() {
+		
+		
+		testPlayer.addCard(testCard);
+		testPlayer.addCard(testCardTwo);
+		assertEquals(testCard, testPlayer.playerHand[0]);
+		assertEquals(testCardTwo, testPlayer.playerHand[1]);
+	}
+	
+	
+	
+	
 	
 	
 	
