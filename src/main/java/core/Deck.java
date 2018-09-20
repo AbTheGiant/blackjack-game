@@ -28,12 +28,12 @@ public class Deck {
 
 	}
 
-	// return number of cards in deck
+	
 	public int getNumCards() {
 		return cards.size();
 	}
 
-	// shuffle deck
+	
 	public void shuffle() {
 		for (int i = 0; i < NUM_CARDS; i++) {
 			for (int j = 0; j < NUM_CARDS; j++) {
@@ -47,7 +47,6 @@ public class Deck {
 
 	}
 
-	// swap card at index i mf j
 	private void swap(int i, int j) {
 
 		Card t = cards.get(i);
@@ -67,7 +66,6 @@ public class Deck {
 		return card;
 	}
 
-	// print deck
 	public String toString() {
 		int k = 0;
 		String holder = "";

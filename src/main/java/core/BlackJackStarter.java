@@ -5,7 +5,7 @@ public class BlackJackStarter {
 	
 	public static void main( String[] args )
     {
-        System.out.println( "welcome to casino " );
+        System.out.println( "Welcome to The BlackJack Game " );
         
         try
         {

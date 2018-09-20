@@ -1,11 +1,10 @@
 package core;
 
-import static org.junit.Assert.*;
-import org.junit.Test;  
-public class HandTest {
+import junit.framework.TestCase;
+
+public class HandTest extends TestCase {
 	
-	
-	
+
 	
 	  public void testAddCard()
 	    {
@@ -28,7 +27,6 @@ public class HandTest {
 	 	
 	 		try
 	    	{
-	 			
 	    	Hand hand = new Hand();
 	    	hand.addCard(new Card(0,8));
 	    	hand.addCard(new Card(0,4));
@@ -56,7 +54,6 @@ public class HandTest {
 	    	
 	    	assertTrue(hand.dealerCanDraw());
 	    	
-	    	// greater than 17
 	    	hand = new Hand();
 	    	hand.addCard(new Card(0,10));
 	    	hand.addCard(new Card(0,11));
@@ -72,19 +69,18 @@ public class HandTest {
 
 	 
 	 	// test if hand has a ace
-	 	@Test
+	 	
 	 	public void testHasAce() {
 
 	 		try
 	 		{
-	 	 	// hand has ace
 	    	Hand hand = new Hand();
 	    	hand.addCard(new Card(0,12));
 	    	hand.addCard(new Card(0,5));
 	    	
 	    	assertTrue(hand.hasAce());
 	    	
-	     	// hand has no ace
+	     	
 	    	hand = new Hand();
 	    	hand.addCard(new Card(0,10));
 	    	hand.addCard(new Card(0,5));
@@ -100,12 +96,12 @@ public class HandTest {
 	 	}
 	 	
 	 	
-	 	@Test
+	 	
 	 	public void testDuplicateCard() {
 
 	 		try
 	 		{
-	 	 	// hand has duplicate card
+	 	 	
 	    	Hand hand = new Hand();
 	    	hand.addCard(new Card(0,10));
 	    	hand.addCard(new Card(0,10));
@@ -116,11 +112,10 @@ public class HandTest {
 	            assertTrue(true);
 			}
 	 		
-	 	 	// hand has do duplicate card
+	 	 	
 	    	try
 	    	{
 	 
-	    	// hand has do duplicate card
 	    	Hand hand = new Hand();
 	    	hand.addCard(new Card(0,8));
 	    	hand.addCard(new Card(0,5));
@@ -133,8 +128,7 @@ public class HandTest {
 	 		
 	 	}
 	    
-	    // test add card score
-	 	@Test
+	    
 	    public void testCardScore()
 	    {
 	    	try
@@ -154,8 +148,7 @@ public class HandTest {
 			}
 	    }
 	    
-	    // test add card score
-	 	@Test
+	    
 	    public void testCardAceScoreBlackJack()
 	    {
 	    	try
@@ -173,9 +166,8 @@ public class HandTest {
 			}
 	    }
 	    	
-	    // test add card score
-	 	@Test
-	    public void testCardAceScoreBlackJack2()
+	   
+	    public void testCardAceScoreBlackJackTwo()
 	    {
 	    	try
 	    	{
@@ -191,9 +183,8 @@ public class HandTest {
 			}
 	    }
 	    
-	    // test add card score
-	 	@Test
-	    public void testCardAceScoreBlackJack3()
+	   
+	    public void testCardAceScoreBlackJackThree()
 	    {
 	    	try
 	    	{
@@ -209,9 +200,7 @@ public class HandTest {
 			}
 	    }
 	    
-	    // test add card score
-	 	@Test
-	    public void testCardAceScoreBlackJack4()
+	    public void testCardAceScoreBlackJackFour()
 	    {
 	    	try
 	    	{
@@ -228,8 +217,7 @@ public class HandTest {
 			}
 	    }
 	    
-	    // test add card score
-	 	@Test
+	 	
 	    public void testCardAceScore()
 	    {
 	    	
@@ -249,19 +237,18 @@ public class HandTest {
 			}
 	    }
 	    	
-	    // test hand score 1
-	    // black jack tie
-	 	@Test
-	    public void testHandScores1()
+	    
+	 	
+	    public void testHandScoresOne()
 	    {
 	    	try
 	    	{
 	        Hand player = new Hand("SK HA");
 	        Hand dealer = new Hand("HQ CA");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	        Scores score = bj.checkScore(player, dealer);
+	        Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.BlackjackTieGame);
 	    	}
@@ -273,19 +260,18 @@ public class HandTest {
 	    	
 	    }
 	    
-	    // test hand score 2
-	    // player wins
-	 	@Test
-	    public void testHandScores2()
+	    
+	 	
+	    public void testHandScoreTwo()
 	    {
 	    	try
 	    	{
 	        Hand player = new Hand("SK HQ");
 	        Hand dealer = new Hand("SQ C5 DJ");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	        Scores score = bj.checkScore(player, dealer);
+	        Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.DealerBusts);
 	    	}
@@ -298,17 +284,17 @@ public class HandTest {
 	    }
 	    
 	    
-	 	@Test
-	    public void testHandScores3()
+	 	
+	    public void testHandScoresThree()
 	    {
 	    	try
 	    	{
 	        Hand player = new Hand("S10 D3 H5 SA");
 	        Hand dealer = new Hand("SQ C5 CA D2");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	        Scores score = bj.checkScore(player, dealer);
+	        Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.PlayerWins);
 	    	}
@@ -321,17 +307,17 @@ public class HandTest {
 	    }
 	    
 	    
-	 	@Test
-	    public void testHandScores4()
+	 	
+	    public void testHandScoresFour()
 	    {
 	    	try
 	    	{
 	        Hand player = new Hand("S2 D3 H5 S3");
 	        Hand dealer = new Hand("SQ C5 CA D2");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	        Scores score = bj.checkScore(player, dealer);
+	        Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.DealerWins);
 	    	}
@@ -343,9 +329,7 @@ public class HandTest {
 	    	
 	    }
 	    
-	    // test hand score 5
-	    // black jack  player
-	 	@Test
+	  
 	    public void testHandScores5()
 	    {
 	    	try
@@ -353,9 +337,9 @@ public class HandTest {
 	        Hand player = new Hand("SK HA");
 	        Hand dealer = new Hand("HQ H5");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	        Scores score = bj.checkScore(player, dealer);
+	        Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.PlayerBlackjack);
 	    	}
@@ -366,9 +350,7 @@ public class HandTest {
 	    	}
 	    	
 	    }
-	    
-	   
-	 	@Test
+	    	
 	    public void testHandScores6()
 	    {
 	    	try
@@ -379,7 +361,6 @@ public class HandTest {
 	        BlackJackGame tester = new BlackJackGame();
 	        
 	       Scores score = tester.checkScore(player, dealer);
-	        
 	        assertTrue(score == Scores.DealerBlackjack);
 	    	}
 	    	
