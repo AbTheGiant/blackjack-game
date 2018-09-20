@@ -34,15 +34,15 @@ public class BlackJackGame {
 			card = deck.deal();
 
 		else {
-			String str = "";
+			String holder = "";
 
 			try {
-				str = fsc.next();
-				card = new Card(str);
+				holder = fsc.next();
+				card = new Card(holder);
 			}
 			catch (Exception ex) {
-				System.out.println("Bad card in file: " + str);
-				throw new Exception("Bad card in file: " + str);
+				System.out.println("Bad card in file: " + holder);
+				throw new Exception("Bad card in file: " + holder);
 			}
 		}
 
@@ -69,11 +69,11 @@ public class BlackJackGame {
 				response = fsc.next().toUpperCase();
 
 				if (!(response.equals("H") || response.equals("S"))) {
-					throw new Exception("H/S command expected in file: " + response);
+					throw new Exception("H OR S  expected in file: " + response);
 				}
 			}
 			catch (Exception ex) {
-				throw new Exception("Bad H/S command in file: " + response);
+				throw new Exception("INVALID  H OR S command in file: " + response);
 			}
 
 		}
@@ -111,7 +111,7 @@ public class BlackJackGame {
 			return Scores.DealerBusts;
 		}
 
-		// check if player busts
+	
 		else if (playerScore > BLACKJACK) {
 			return Scores.PlayerBusts;
 		}
@@ -130,7 +130,7 @@ public class BlackJackGame {
 	public void run(String[] args) throws Exception {
 
 		
-		String filename;
+		String inputFile;
 
 		
 		do {
@@ -143,21 +143,21 @@ public class BlackJackGame {
 
 			
 			if (args.length > 0) {
-				filename = args[0];
+				inputFile = args[0];
 			}
 
 			else {
 				System.out.print("Enter File name: ");
-				filename = input.nextLine();
+				inputFile = input.nextLine();
 			}
 
 			
 			try {
-				fsc = new Scanner(new File(filename));
+				fsc = new Scanner(new File(inputFile));
 			}
 
 			catch (Exception ex) {
-				System.out.println("Cannot Find File " + filename);
+				System.out.println("Cannot Find File " + inputFile);
 				return;
 			}
 		}
@@ -172,7 +172,7 @@ public class BlackJackGame {
 		int playerScore = 0;
 		int dealerScore = 0;
 
-		// deal 2 cards to each player
+		// give two card to each player
 		Card card = null;
 		for (int i = 0; i < 2; i++) {
 			card = getCard();
@@ -185,11 +185,11 @@ public class BlackJackGame {
 		}
 
 		
-		System.out.println("Player Cards: " + player);
-		System.out.println("Player Score: " + player.getScore());
+		System.out.println("PlayerCards: " + player);
+		System.out.println("PlayerScore: " + player.getScore());
 
 		
-		System.out.println("Dealer Up Card: " + dealer.getUpCard());
+		System.out.println("Dealer Card: " + dealer.getUpCard());
 
 		
 		Scores score = checkScore(player, dealer);
@@ -197,7 +197,7 @@ public class BlackJackGame {
 		
 		if (score == Scores.BlackjackTieGame) {
 
-			System.out.println("Tie Game both dealer and player have a black jack!");
+			System.out.println("Tie Game The  dealer and player both a black jack!");
 			System.out.println("Game Over!");
 		}
 
@@ -214,10 +214,9 @@ public class BlackJackGame {
 
 		}
 
-		// continue playing
+		
 		else {
 			
-			// hit or stand
 			System.out.print("Player (H)it or (S)tand: ");
 			String response = getResponse();
 
@@ -232,7 +231,7 @@ public class BlackJackGame {
 				System.out.println(player);
 				System.out.println("Player's score: " + player.getScore());
 
-				// check For bust
+				
 				if (playerScore > BLACKJACK) {
 					System.out.println("PLAYER YOU HAVE BUSTED, YOU LOSE :(");
 					busted = true;
@@ -244,19 +243,16 @@ public class BlackJackGame {
 				}
 			}
 			if (!busted) {
-
-				
 				System.out.print("Players Final Cards: "); 
 				System.out.println(player);
 				playerScore = player.getScore();
 				System.out.println("Player's final score: " + playerScore);
 				dealerScore = dealer.getScore();
-				System.out.print("Dealer Score so far: " + dealerScore + "\n");
+				System.out.print("Dealer Score: " + dealerScore + "\n");
 				while (dealer.dealerCanDraw()) {
 					System.out.println("Dealer takes a card");
 					dealer.addCard(getCard());
 				}
-
 				dealerScore = dealer.getScore();
 				System.out.print("Final Dealer Score: " + dealerScore + "\n");
 
@@ -282,7 +278,6 @@ public class BlackJackGame {
 	
 	public void printWinner(Scores score) {
 
-		
 
 		if (score == Scores.BlackjackTieGame) {
 			System.out.println("Blackjack Tie Game");
@@ -307,7 +302,7 @@ public class BlackJackGame {
 		}
 
 		else if (score == Scores.DealerWins) {
-			System.out.print("You Loose, Dealer wins" + "\n");
+			System.out.print("You Lost, Dealer wins" + "\n");
 		}
 
 	}
