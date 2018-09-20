@@ -4,19 +4,17 @@ import java.util.ArrayList;
 
 public class Deck {
 
-	// constants
+	
 	public int NUM_CARDS = 52;
 	public int NUM_SUITS = 4;
 	public int NUM_RANKS = 13;
 	private List<Card> cards = new ArrayList<Card>();
 
-	// initialize deck
 	public Deck() throws Exception {
 
 		initialize();
 	}
 
-	// initialize deck
 	private void initialize() throws Exception {
 
 		cards = new ArrayList<Card>();
@@ -37,16 +35,13 @@ public class Deck {
 
 	// shuffle deck
 	public void shuffle() {
-
 		for (int i = 0; i < NUM_CARDS; i++) {
-
 			for (int j = 0; j < NUM_CARDS; j++) {
 
 				int x = (int) (Math.random() * 52);
 				int y = (int) (Math.random() * 52);
 
 				swap(x, y);
-
 			}
 		}
 
@@ -61,8 +56,6 @@ public class Deck {
 
 	}
 
-	// deal one card
-	// shuffle deck if necessarry
 	public Card deal() throws Exception {
 		Card card = cards.remove(0);
 
@@ -76,20 +69,18 @@ public class Deck {
 
 	// print deck
 	public String toString() {
-
 		int k = 0;
-		String s = "";
+		String holder = "";
 
 		for (int i = 0; i < NUM_SUITS; i++) {
 
 			for (int j = 0; j < NUM_RANKS; j++) {
-				s += cards.get(k++) + " ";
+				holder += cards.get(k++) + " ";
 			}
-
-			s += "\n";
+			holder += "\n";
 		}
 
-		return s;
+		return holder;
 	}
 
 }

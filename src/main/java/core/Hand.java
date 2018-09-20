@@ -108,15 +108,14 @@ public class Hand {
 			return false;
 	}
 
-	// return true if dealewr can draw another card
-	// stands at 17
+	
 	public boolean dealerCanDraw() {
 
 		int score = getScore();
 		return score <= 16 || (score == 17 && hasAce());
 	}
 
-	// return num cards
+	
 	public int getNumCards() {
 
 		return numCards;

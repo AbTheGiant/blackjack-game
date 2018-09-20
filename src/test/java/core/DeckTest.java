@@ -1,29 +1,28 @@
 package core;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-public class DeckTest {
+import junit.framework.TestCase;
+
+public class DeckTest extends TestCase {
 	
 	
 	
-	@Test
+	
 	  public void testDeckNumberCards() 
 	    {
-	        Deck deck=null;
+	        Deck testerDeck=null;
 			try {
-				deck = new Deck();
+				testerDeck = new Deck();
 			} 
 			
 			catch (Exception e) {
 
 	             assertTrue(false);
 			}
-	    	
-	    	assertTrue(deck.getNumCards()==52);
+	    	assertEquals(52, testerDeck.getNumCards());
 
 	    }
 	    
-		@Test
+		
 	    public void testShuffle()
 	    {
 	    	try
@@ -42,12 +41,14 @@ public class DeckTest {
 	    		
 	    		
 	    		if(c1.getValue()==c2.getValue() && c1.getRank().equals(c2.getRank())
-	    				&& c1.getSuit().equals(c2.getSuit())) count++;
+	    				&& c1.getSuit().equals(c2.getSuit())) {
+	    			count++;
+	    		} 
 	    		
 	    		
 	    	}
 	    	
-	    	// count of 5 is accepable
+	    	
 	    	assertTrue(count < 5);
 	    	}
 	    	
@@ -57,15 +58,15 @@ public class DeckTest {
 			}
 	    	
 	    }
-	    @Test
+	    
 	    public void testDeal()
 	    {
 	    	try
 	    	{
-	       Deck deck = new Deck();
-	       Card c = deck.deal();
+	       Deck testerDeck = new Deck();
+	       Card c = testerDeck.deal();
 	       assertTrue(c != null);
-	       assertTrue(deck.getNumCards()==51);
+	       assertEquals(51, testerDeck.getNumCards());
 	    	}
 	    	
 	    	catch (Exception e) {
@@ -75,7 +76,7 @@ public class DeckTest {
 	    }
 	   
 
-	    @Test
+	    
 	    public void testInitialize()
 	    {
 	    	try

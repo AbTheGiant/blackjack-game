@@ -2,50 +2,37 @@ package core;
 import java.io.File;
 import java.util.Scanner;
 
-/**
- * 
- * Black jack game
- *
- */
 
 public class BlackJackGame {
 
-	// constants
+	
 	public static final int BLACKJACK = 21;
-
-	/*public static enum Scores {
-		NoWin, PlayerBlackjack, DealerBlackjack, BlackjackTieGame, TieGame, PlayerWins, DealerWins, DealerBusts, PlayerBusts
-	};*/
-
-	// make key board reader
-	private static final Scanner kybd = new Scanner(System.in);
-
+	private static final Scanner input = new Scanner(System.in);
 	private Deck deck;
 	private Hand player;
 	private Hand dealer;
 
-	private String mode = "C"; // opewration mode console or file input
-	private Scanner fsc; // input file stream
+	private String mode = "C"; 
+	private Scanner fsc; 
 
-	// construct black jack game
+	
 	public BlackJackGame() throws Exception {
 		deck = new Deck();
 		player = new Hand();
 		dealer = new Hand();
 
-		// shuffle deck
+		
 		deck.shuffle();
 
 	}
 
-	// get card from deck or file
+	
 	public Card getCard() throws Exception {
 		Card card = null;
 
 		if (mode.equals("C"))
 			card = deck.deal();
 
-		// file mode
 		else {
 			String str = "";
 
@@ -53,7 +40,6 @@ public class BlackJackGame {
 				str = fsc.next();
 				card = new Card(str);
 			}
-
 			catch (Exception ex) {
 				System.out.println("Bad card in file: " + str);
 				throw new Exception("Bad card in file: " + str);
@@ -62,23 +48,21 @@ public class BlackJackGame {
 
 		return card;
 	}
-
-	// get dealer response from console or file
+	
 	public String getResponse() throws Exception {
 		String response = "";
 
 		if (mode.equals("C")) {
 
-			response = kybd.nextLine().toUpperCase();
+			response = input.nextLine().toUpperCase();
 
 			while (!(response.equals("H") || response.equals("S"))) {
 				System.out.print("You must enter H or S: ");
-				response = kybd.nextLine().toUpperCase();
+				response = input.nextLine().toUpperCase();
 
 			}
 		}
 
-		// file mode
 		else {
 
 			try {
@@ -88,7 +72,6 @@ public class BlackJackGame {
 					throw new Exception("H/S command expected in file: " + response);
 				}
 			}
-
 			catch (Exception ex) {
 				throw new Exception("Bad H/S command in file: " + response);
 			}
@@ -98,12 +81,11 @@ public class BlackJackGame {
 		return response;
 	}
 
-	// return score betwen 2 players
 	public Scores checkScore(Hand player, Hand dealer) {
 		int playerScore = player.getScore();
 		int dealerScore = dealer.getScore();
 
-		// check if tie
+		
 		if (playerScore == dealerScore) {
 			if (playerScore == BLACKJACK && dealerScore == BLACKJACK) {
 				return Scores.BlackjackTieGame;
@@ -114,17 +96,17 @@ public class BlackJackGame {
 			}
 		}
 
-		// check if dealer has a black jack
+		
 		else if (dealerScore == BLACKJACK) {
 			return Scores.DealerBlackjack;
 		}
 
-		// check if player has a black jack
+	
 		else if (playerScore == BLACKJACK) {
 			return Scores.PlayerBlackjack;
 		}
 
-		// check if dealer busts
+		
 		else if (dealerScore > BLACKJACK) {
 			return Scores.DealerBusts;
 		}
@@ -144,39 +126,38 @@ public class BlackJackGame {
 
 	}
 
-	// run game
-	// get operating mode console or file
+
 	public void run(String[] args) throws Exception {
 
-		// input file name
+		
 		String filename;
 
-		// ask console or file mode
+		
 		do {
-			System.out.print("C = Console or F = File mode? ");
-			mode = kybd.nextLine().toUpperCase();
+			System.out.print("Please Enter C Console Input or F  for File Input ");
+			mode = input.nextLine().toUpperCase();
 		} while (!(mode.equals("C") || mode.equals("F")));
 
-		// open file
+		
 		if (mode.equals("F")) {
 
-			// get file name from command line
+			
 			if (args.length > 0) {
 				filename = args[0];
 			}
 
 			else {
-				System.out.print("Enter input File name: ");
-				filename = kybd.nextLine();
+				System.out.print("Enter File name: ");
+				filename = input.nextLine();
 			}
 
-			// try to open file
+			
 			try {
 				fsc = new Scanner(new File(filename));
 			}
 
 			catch (Exception ex) {
-				System.out.println("Cannot open input File name " + filename);
+				System.out.println("Cannot Find File " + filename);
 				return;
 			}
 		}
@@ -185,10 +166,9 @@ public class BlackJackGame {
 
 	}
 
-	// play game
 	public void play() throws Exception {
 
-		// scores
+		
 		int playerScore = 0;
 		int dealerScore = 0;
 
@@ -204,17 +184,17 @@ public class BlackJackGame {
 			dealer.addCard(card);
 		}
 
-		// show player cards
+		
 		System.out.println("Player Cards: " + player);
 		System.out.println("Player Score: " + player.getScore());
 
-		// show dealer cards
+		
 		System.out.println("Dealer Up Card: " + dealer.getUpCard());
 
-		// check score
+		
 		Scores score = checkScore(player, dealer);
 
-		// check for black jack
+		
 		if (score == Scores.BlackjackTieGame) {
 
 			System.out.println("Tie Game both dealer and player have a black jack!");
@@ -254,7 +234,7 @@ public class BlackJackGame {
 
 				// check For bust
 				if (playerScore > BLACKJACK) {
-					System.out.println("Player You have busted, You Loose");
+					System.out.println("PLAYER YOU HAVE BUSTED, YOU LOSE :(");
 					busted = true;
 				} else {
 					System.out.print("Player (H)it or (S)tand: ");
@@ -263,22 +243,13 @@ public class BlackJackGame {
 						System.out.println(response);
 				}
 			}
-
-			
-			// not busted
 			if (!busted) {
 
-				// get players final score
-				System.out.print("Players Final Cards: "); // print players
-															// cards
+				
+				System.out.print("Players Final Cards: "); 
 				System.out.println(player);
 				playerScore = player.getScore();
 				System.out.println("Player's final score: " + playerScore);
-
-				// then the dealer draws cards until reaching a total of 17 or
-				// more.
-
-				// get dealers score
 				dealerScore = dealer.getScore();
 				System.out.print("Dealer Score so far: " + dealerScore + "\n");
 				while (dealer.dealerCanDraw()) {
@@ -289,13 +260,13 @@ public class BlackJackGame {
 				dealerScore = dealer.getScore();
 				System.out.print("Final Dealer Score: " + dealerScore + "\n");
 
-				// print dealer hand
+				
 				System.out.print("Dealers hand: ");
 				System.out.println(dealer);
 
 				// dealer busts
 				if (dealerScore > BLACKJACK) {
-					System.out.println("Dealer has busted! Player Wins");
+					System.out.println("DEALER YOU HAVE BUSTED ! Player Wins :)");
 				}
 
 				else {
@@ -303,19 +274,15 @@ public class BlackJackGame {
 
 					printWinner(score);
 
-				} // end else
-
+				} 
 			}
 		}
 	}
 
-	// print winner
+	
 	public void printWinner(Scores score) {
 
-		// player loose if the customer busts or if the customer's
-		// total is
-		// less than or equal to the dealer's and the dealer hasn't
-		// bust.
+		
 
 		if (score == Scores.BlackjackTieGame) {
 			System.out.println("Blackjack Tie Game");

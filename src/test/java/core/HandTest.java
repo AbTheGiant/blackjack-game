@@ -11,11 +11,11 @@ public class HandTest {
 	    {
 	    	try
 	    	{
-	    	Hand hand = new Hand();
-	    	hand.addCard(new Card(0,2));
-	    	Card card = hand.getCard(0);
+	    	Hand testerHand = new Hand();
+	    	testerHand.addCard(new Card(0,2));
+	    	Card card = testerHand.getCard(0);
 	    	assertTrue(card != null);
-	    	assertTrue(hand.getNumCards()==1);
+	    	assertTrue(testerHand.getNumCards()==1);
 	    	}
 	    	catch (Exception e) {
 
@@ -23,19 +23,19 @@ public class HandTest {
 			}
 	    }
 	    
-	    // test if dealer can draw
+	    
 	 	public void testDealerCanDraw() {
 	 	
 	 		try
 	    	{
-	 		// less than 16	
+	 			
 	    	Hand hand = new Hand();
 	    	hand.addCard(new Card(0,8));
 	    	hand.addCard(new Card(0,4));
 	  
 	    	assertTrue(hand.dealerCanDraw());
 	    	
-	    	// is  16	
+	    	
 	    	hand = new Hand();
 	    	hand.addCard(new Card(0,10));
 	    	hand.addCard(new Card(0,4));
@@ -99,7 +99,7 @@ public class HandTest {
 	 		
 	 	}
 	 	
-	 	// test if hand has duplicate card
+	 	
 	 	@Test
 	 	public void testDuplicateCard() {
 
@@ -297,8 +297,7 @@ public class HandTest {
 	    	
 	    }
 	    
-	    // test hand score 3
-	    // playewr wins
+	    
 	 	@Test
 	    public void testHandScores3()
 	    {
@@ -321,8 +320,7 @@ public class HandTest {
 	    	
 	    }
 	    
-	    // test hand score 4
-	    // dealer wins
+	    
 	 	@Test
 	    public void testHandScores4()
 	    {
@@ -369,8 +367,7 @@ public class HandTest {
 	    	
 	    }
 	    
-	    // test hand score 6
-	    // black jack dealer
+	   
 	 	@Test
 	    public void testHandScores6()
 	    {
@@ -379,9 +376,9 @@ public class HandTest {
 	        Hand player = new Hand("D4 HA");
 	        Hand dealer = new Hand("HQ HA");
 	        
-	        BlackJackGame bj = new BlackJackGame();
+	        BlackJackGame tester = new BlackJackGame();
 	        
-	       Scores score = bj.checkScore(player, dealer);
+	       Scores score = tester.checkScore(player, dealer);
 	        
 	        assertTrue(score == Scores.DealerBlackjack);
 	    	}

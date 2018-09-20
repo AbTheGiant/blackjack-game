@@ -1,20 +1,17 @@
 package core;
 
 
-import static org.junit.Assert.*;
-import org.junit.Test;
+import junit.framework.TestCase;
 
 
-//import junit.framework.TestCase;
 
-public class CardTest  {
+
+public class CardTest extends TestCase {
 	
 	
 	
-// test card class
-    
-    // test suit
-	@Test
+
+	
     public void testSuit()
     {
     	try
@@ -35,16 +32,16 @@ public class CardTest  {
     // test rank
 	
 	
-	@Test
+	
     public void testRank()
     {
     	try
     	{
-    	Card card = new Card(0,2);
-    	assertTrue(card.getRank().equals("4"));
+    	Card testerCard = new Card(0,2);
+    	assertTrue(testerCard.getRank().equals("4"));
     	
-    	card = new Card(0,11);
-    	assertTrue(card.getRank().equals("K"));
+    	testerCard = new Card(0,11);
+    	assertTrue(testerCard.getRank().equals("K"));
     	}
     	catch (Exception e) {
 
@@ -52,17 +49,17 @@ public class CardTest  {
 		}
     }
     
-    // test value
-	@Test
+    
+	
     public void testValue()
     {
     	try
     	{
-    	Card card = new Card(0,2);
-    	assertTrue(card.getValue()==4);
+    	Card testerCard = new Card(0,4);
+    	assertEquals(6,testerCard.getValue());
     	
-       	card = new Card(0,11);
-    	assertTrue(card.getValue()==10);
+       	testerCard = new Card(0,11);
+    	assertEquals(10, testerCard.getValue());
     	}
     	catch (Exception e) {
 
@@ -70,17 +67,17 @@ public class CardTest  {
 		}
     }
     
-    // test is ace
-	@Test
+    
+	
     public void testIsAce()
     {
     	try
     	{
-    	Card card = new Card(0,12);
-    	assertTrue(card.isAce());
+    	Card testerCard = new Card(0,12);
+    	assertTrue(testerCard.isAce());
     	
-    	card = new Card(0,2);
-    	assertFalse(card.isAce());
+    	testerCard = new Card(0,4);
+    	assertFalse(testerCard.isAce());
     	}
     	
     	catch (Exception e) {
@@ -90,13 +87,13 @@ public class CardTest  {
     }
     
     // test to Card string
-	@Test
+	
     public void testCardToString()
     {
     	try
     	{
-    	Card card = new Card(0,2);
-    	assertTrue(card.toString().equals("H4"));
+    	Card testerCard = new Card(1,5);
+    	assertEquals("S7", testerCard.toString());
     	}
     	
     	catch (Exception e) {
